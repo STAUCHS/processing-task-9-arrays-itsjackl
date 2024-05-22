@@ -1,6 +1,12 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+* This class represents a simple game sketch.
+* It extends the PApplet class from the Processing library.
+*
+* @author J. Lai
+*/
 public class Sketch extends PApplet {
   PImage imgBackground, imgPlayer, imgHeart, imgGameOver;
 
@@ -16,10 +22,16 @@ public class Sketch extends PApplet {
 
   boolean wPressed = false, aPressed = false, sPressed = false, dPressed = false, upPressed = false, downPressed = false;
 
+  /**
+  * This method sets up the size of the window.
+  */
   public void settings() {
     size(800, 400);
   }
 
+  /**
+  * This method initializes the sketch by loading images and setting up initial parameters.
+  */
   public void setup() {
     imgBackground = loadImage("snowbackground.jpg");
     imgBackground.resize(width, height);
@@ -42,6 +54,9 @@ public class Sketch extends PApplet {
     }
   }
 
+  /**
+  * This method draws the sketch, handling player movement, snowflakes, collisions, and game over conditions.
+  */
   public void draw() {
     background(imgBackground);
 
@@ -96,6 +111,9 @@ public class Sketch extends PApplet {
     }
   }
 
+  /**
+  * This method handles key presses for player movement and speed control.
+  */
   public void keyPressed() {
     if (key == 'w' || key == 'W') wPressed = true;
     if (key == 's' || key == 'S') sPressed = true;
@@ -105,6 +123,9 @@ public class Sketch extends PApplet {
     if (keyCode == DOWN) downPressed = true;
   }
 
+  /**
+  * This method handles key releases for player movement and speed control.
+  */
   public void keyReleased() {
     if (key == 'w' || key == 'W') wPressed = false;
     if (key == 's' || key == 'S') sPressed = false;
@@ -114,6 +135,9 @@ public class Sketch extends PApplet {
     if (keyCode == DOWN) downPressed = false;
   }
 
+  /**
+  * This method handles mouse presses to hide snowflakes.
+  */
   public void mousePressed() {
     for (int i = 0; i < numSnowflakes; i++) {
       if (!ballHideStatus[i] && dist(mouseX, mouseY, snowX[i], snowY[i]) < 10) {
